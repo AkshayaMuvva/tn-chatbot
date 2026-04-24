@@ -358,7 +358,7 @@ def load_rag_system():
     """Load ChromaDB index and LangGraph (cached across reruns)."""
     from rag.embedder import is_index_ready, build_index
     from rag.chunker import create_chunks
-    from graph.supervisor import get_graph
+    from graph.supervisor_simplified import get_graph
 
     if not is_index_ready():
         chunks = create_chunks()
@@ -673,7 +673,7 @@ if user_input and st.session_state.rag_ready:
 
     with st.spinner("🤔 Searching verified college database…"):
         try:
-            from graph.supervisor import chat as graph_chat
+            from graph.supervisor_simplified import chat as graph_chat
 
             ai_response, new_history, new_profile, new_colleges, new_context = graph_chat(
                 user_input=user_input,
